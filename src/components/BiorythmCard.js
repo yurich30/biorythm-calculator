@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import React from 'react'
 import BiorythmChart from './BiorythmChart'
 import { calculateBiorythms } from '../calculations'
+import './BiorythmCard.css'
 
 const BiorythmCard = ({targetDate, userDateOfBirth}) => {
   const formatDate = (isoString) => {
@@ -23,9 +24,9 @@ const BiorythmCard = ({targetDate, userDateOfBirth}) => {
         </IonCardHeader>
         <IonCardContent>
           <BiorythmChart targetDate={targetDate} userDateOfBirth={userDateOfBirth} />
-          <p>Phisical: {physical.toFixed(4)}</p>
-          <p>Emotioonal: {emotional.toFixed(4)}</p>
-          <p>Intellectual: {intellectual.toFixed(4)}</p>
+          <p className='green'>Phisical: {physical.toFixed(4)}</p>
+          <p className='red'>Emotioonal: {emotional.toFixed(4)}</p>
+          <p className='blue'>Intellectual: {intellectual.toFixed(4)}</p>
         </IonCardContent>
       </IonCard>
   )
