@@ -1,21 +1,29 @@
+import dayjs from 'dayjs'
 import React from 'react'
-import { Line, LineChart, ResponsiveContainer, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, XAxis } from "recharts"
+import { calculateBiorythmSeries } from '../calculations'
 
-const BiorythmChart = () => {
+const formatDate = (isoString) => {
+    return dayjs(isoString).format('D MMM')
+}
 
-    const data = [
-        {date: '2021-06-26', physical: 0.9, emotional: 0.5, intellectual: 1},
-        {date: '2021-06-27', physical: -0.9, emotional: 0.25, intellectual: 0},
-        {date: '2021-06-28', physical: 0.45, emotional: 0.9, intellectual: -1},
-    ]
+const BiorythmChart = ({userDateOfBirth, targetDate }) => {
+
+    const startDate = dayjs(targetDate).subtract(15, 'days').toISOString()
+    const biorythmsData = calculateBiorythmSeries(userDateOfBirth, startDate, 31)
+        .map((item) => ({ ...item, date: formatDate(item.date)}))
+
+    console.log(biorythmsData);
 
     return(
         <ResponsiveContainer width='100%' height={200}>
-            <LineChart data={data}>
-                <XAxis dataKey='date'/>
-                <Line dataKey="physical" stroke='blue'/>
-                <Line dataKey='emotional' stroke= 'red'/>
-                <Line dataKey='intellectual' stroke='green'/>
+            <LineChart data={biorythmsData}>
+                <XAxis dataKey='date' ticks={[biorythmsData[3].date, biorythmsData[15].date, biorythmsData[27].date]}/>
+                <CartesianGrid vertical={false} strokeDasharray='3 3'/>
+                <ReferenceLine x={biorythmsData[15].date} />
+                <Line type='natural' dot={false} dataKey='physical' stroke='blue'/>
+                <Line type='natural' dot={false} dataKey='emotional' stroke= 'red'/>
+                <Line type='natural' dot={false} dataKey='intellectual' stroke='green'/>
             </LineChart>
         </ResponsiveContainer>
     )

@@ -9,8 +9,19 @@ const calculateBiorythm = (birthDate, targetDate, cycle) => {
 
 export const calculateBiorythms = (birthDate, targetDate) => {
     return {
+        date: targetDate,
         physical: calculateBiorythm(birthDate, targetDate, 23),
         emotional: calculateBiorythm(birthDate, targetDate, 28),
         intellectual: calculateBiorythm(birthDate, targetDate, 33),
     }
+}
+
+export const calculateBiorythmSeries = (birthDate, startDate, size) => {
+    const series = []
+    const startDay = dayjs(startDate).startOf('day')
+    for(let i = 0; i < size; i++){
+        const targetDate = startDay.add(i, 'days').toISOString()
+        series.push(calculateBiorythms(birthDate, targetDate))  
+    }
+    return series
 }
