@@ -6,6 +6,7 @@ import {
 } from '@ionic/react'
 import dayjs from 'dayjs'
 import React from 'react'
+import BiorythmChart from './BiorythmChart'
 import { calculateBiorythms } from '../calculations'
 
 const BiorythmCard = ({targetDate, userDateOfBirth}) => {
@@ -21,6 +22,7 @@ const BiorythmCard = ({targetDate, userDateOfBirth}) => {
           <IonCardTitle>{formatDate(targetDate)}</IonCardTitle>
         </IonCardHeader>
         <IonCardContent>
+          <BiorythmChart />
           <p>Phisical: {physical.toFixed(4)}</p>
           <p>Emotioonal: {emotional.toFixed(4)}</p>
           <p>Intellectual: {intellectual.toFixed(4)}</p>
