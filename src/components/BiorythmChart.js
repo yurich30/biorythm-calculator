@@ -13,8 +13,6 @@ const BiorythmChart = ({userDateOfBirth, targetDate }) => {
     const biorythmsData = calculateBiorythmSeries(userDateOfBirth, startDate, 31)
         .map((item) => ({ ...item, date: formatDate(item.date)}))
 
-    console.log(biorythmsData);
-
     return(
         <ResponsiveContainer width='100%' height={200}>
             <LineChart data={biorythmsData}>
