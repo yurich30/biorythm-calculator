@@ -27,11 +27,11 @@ function App() {
       <IonContent className="ion-padding">
       {userDateOfBirth && <BiorythmCard targetDate={targetDate} userDateOfBirth={userDateOfBirth}/>}
         <IonItem>
-          <IonLabel position='fixed'>Date of birth:</IonLabel>
+          <IonLabel position='fixed'>Birth Date:</IonLabel>
           <IonDatetime placeholder='Date of birthday' onIonChange={(e) => setUserDateOfBirth(e.detail.value)} value={userDateOfBirth} displayFormat='DD MMM YYYY' />
         </IonItem>
         <IonItem>
-          <IonLabel position='fixed'>Target date :</IonLabel>
+          <IonLabel position='fixed'>Target date:</IonLabel>
           <IonDatetime placeholder='Date of birthday' onIonChange={(e) => setTargetDate(e.detail.value)} value={targetDate} displayFormat='DD MMM YYYY' />
         </IonItem>
       </IonContent>
